@@ -8,6 +8,9 @@ class CalculatorPage extends StatefulWidget {
 
 // state object cua page
 class _CalculatorPageState extends State<CalculatorPage> {
+
+  late String text = "";
+
   @override
   void initState() {
     super.initState();
@@ -26,7 +29,24 @@ class _CalculatorPageState extends State<CalculatorPage> {
       appBar: AppBar(
         title: Text("Calculator App"),
       ),
-      body: Container(),
+      body: Container(
+        constraints: BoxConstraints.expand(),
+        child: Center(
+          child: Column(
+            children: [
+              Text(text),
+              ElevatedButton(
+                child: Text("Change Text"),
+                onPressed: (){
+                   setState(() {
+                     text = " abc";
+                   });
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
