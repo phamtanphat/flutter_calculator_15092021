@@ -36,9 +36,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 child: TextField(
                   keyboardType: TextInputType.number,
                   cursorColor: Colors.red,
-                  obscureText: true,
+                  maxLength: 4,
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.only(left: 10, top: 20 , bottom: 20),
+                    contentPadding:
+                        const EdgeInsets.only(left: 10, top: 20, bottom: 20),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                         borderSide: BorderSide(width: 2)),
@@ -53,9 +55,10 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 child: TextField(
                   keyboardType: TextInputType.number,
                   cursorColor: Colors.red,
-                  obscureText: true,
+                  maxLength: 4,
                   decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.only(left: 10, top: 20 , bottom: 20),
+                    contentPadding:
+                        const EdgeInsets.only(left: 10, top: 20, bottom: 20),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                         borderSide: BorderSide(width: 2)),
@@ -64,6 +67,46 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   ),
                 ),
               ),
+              SizedBox(height: 20),
+              Visibility(
+                  visible: true,
+                  child: Text("Kết quả = 10",
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red))),
+              SizedBox(height: 20),
+              Expanded(
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        child: Row(
+                          children: [
+                            ElevatedButton(onPressed: (){}, child: Text("+" , style: TextStyle(fontSize: 20))),
+                            ElevatedButton(onPressed: (){}, child: Text("-" , style: TextStyle(fontSize: 20))),
+                          ],
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        child: Row(
+                          children: [
+                            ElevatedButton(onPressed: (){}, child: Text("*" , style: TextStyle(fontSize: 20))),
+                            ElevatedButton(onPressed: (){}, child: Text("/" , style: TextStyle(fontSize: 20))),
+                          ],
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
             ],
           )),
     );
