@@ -10,6 +10,10 @@ class CalculatorPage extends StatefulWidget {
 class _CalculatorPageState extends State<CalculatorPage> {
   late var width;
   late var height;
+  final number1Controller = TextEditingController();
+  final number2Controller = TextEditingController();
+  var visible =  false;
+  dynamic result = "";
 
   @override
   void didChangeDependencies() {
@@ -35,6 +39,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextField(
+                  controller: number1Controller,
                   keyboardType: TextInputType.number,
                   cursorColor: Colors.red,
                   maxLength: 4,
@@ -54,6 +59,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextField(
+                  controller: number2Controller,
                   keyboardType: TextInputType.number,
                   cursorColor: Colors.red,
                   maxLength: 4,
@@ -70,8 +76,8 @@ class _CalculatorPageState extends State<CalculatorPage> {
               ),
               SizedBox(height: 5),
               Visibility(
-                  visible: true,
-                  child: Text("Kết quả = 10",
+                  visible: visible,
+                  child: Text("Kết quả = $result",
                       style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
@@ -86,7 +92,31 @@ class _CalculatorPageState extends State<CalculatorPage> {
                         child: Row(
                           children: [
                             ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  var textNumber1 =
+                                      number1Controller.text.toString();
+                                  var textNumber2 =
+                                      number2Controller.text.toString();
+
+                                  if (textNumber1.isEmpty || textNumber2.isEmpty) {
+                                    setState(() {
+                                      visible = false;
+                                    });
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                                "Người dùng nhập chưa đầy đủ")));
+                                    return;
+                                  }
+
+                                  var number1 = int.parse(textNumber1);
+                                  var number2 = int.parse(textNumber2);
+
+                                  setState(() {
+                                    result = number1 + number2;
+                                    visible = true;
+                                  });
+                                },
                                 child:
                                     Text("+", style: TextStyle(fontSize: 20))),
                             ElevatedButton(
