@@ -120,7 +120,31 @@ class _CalculatorPageState extends State<CalculatorPage> {
                                 child:
                                     Text("+", style: TextStyle(fontSize: 20))),
                             ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  var textNumber1 =
+                                  number1Controller.text.toString();
+                                  var textNumber2 =
+                                  number2Controller.text.toString();
+
+                                  if (textNumber1.isEmpty || textNumber2.isEmpty) {
+                                    setState(() {
+                                      visible = false;
+                                    });
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                                "Người dùng nhập chưa đầy đủ")));
+                                    return;
+                                  }
+
+                                  var number1 = int.parse(textNumber1);
+                                  var number2 = int.parse(textNumber2);
+
+                                  setState(() {
+                                    result = number1 - number2;
+                                    visible = true;
+                                  });
+                                },
                                 child:
                                     Text("-", style: TextStyle(fontSize: 20))),
                           ],
@@ -135,11 +159,67 @@ class _CalculatorPageState extends State<CalculatorPage> {
                         child: Row(
                           children: [
                             ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  var textNumber1 =
+                                  number1Controller.text.toString();
+                                  var textNumber2 =
+                                  number2Controller.text.toString();
+
+                                  if (textNumber1.isEmpty || textNumber2.isEmpty) {
+                                    setState(() {
+                                      visible = false;
+                                    });
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                                "Người dùng nhập chưa đầy đủ")));
+                                    return;
+                                  }
+
+                                  var number1 = int.parse(textNumber1);
+                                  var number2 = int.parse(textNumber2);
+
+                                  setState(() {
+                                    result = number1 * number2;
+                                    visible = true;
+                                  });
+                                },
                                 child:
                                     Text("*", style: TextStyle(fontSize: 20))),
                             ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  var textNumber1 =
+                                  number1Controller.text.toString();
+                                  var textNumber2 =
+                                  number2Controller.text.toString();
+
+                                  if (textNumber1.isEmpty || textNumber2.isEmpty) {
+                                    setState(() {
+                                      visible = false;
+                                    });
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                                "Người dùng nhập chưa đầy đủ")));
+                                    return;
+                                  }
+
+
+                                  var number1 = double.parse(textNumber1);
+                                  var number2 = double.parse(textNumber2);
+
+                                  if (number2 <= 0){
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                                "Không chia với giá trị 0")));
+                                    return;
+                                  }
+                                  setState(() {
+                                    result =  num.parse((number1 / number2).toStringAsExponential(1));
+                                    visible = true;
+                                  });
+                                },
                                 child:
                                     Text("/", style: TextStyle(fontSize: 20))),
                           ],
